@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Splatoon 3 Badge Tracker</title>
+  <title>Splatoon 3 Badge Tracker+</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
@@ -13,7 +13,8 @@
   <main class="app-shell">
     <section class="tracker-frame">
       <header class="header-strip">
-        <div class="profile-chip">inkKiddo</div>
+        <div class="profile-chip">inkKiddo+</div>
+        <button id="themeToggle" class="chip-btn" type="button">🌙 Dark</button>
       </header>
 
       <nav class="tab-row">
@@ -23,20 +24,58 @@
       </nav>
 
       <section class="controls">
-        <input id="search" type="text" placeholder="Search badge name/category..." />
-        <div class="filters" id="filters"></div>
-        <button id="reset" class="reset-btn">Reset</button>
+        <input id="search" type="text" placeholder="Search badge name/category/requirement..." />
+        <div class="row-wrap">
+          <div class="filters" id="filters"></div>
+          <select id="statusFilter" class="select-ctrl">
+            <option value="all">All statuses</option>
+            <option value="locked">Locked</option>
+            <option value="in-progress">In Progress</option>
+            <option value="earned">Earned</option>
+          </select>
+          <select id="sortBy" class="select-ctrl">
+            <option value="default">Sort: Default</option>
+            <option value="name-asc">Name A-Z</option>
+            <option value="name-desc">Name Z-A</option>
+            <option value="status">Status</option>
+            <option value="recent">Recently Updated</option>
+          </select>
+          <button id="viewToggle" class="chip-btn" type="button">🧱 Grid</button>
+          <button id="favoritesOnly" class="chip-btn" type="button">⭐ Favorites</button>
+          <button id="hideEarned" class="chip-btn" type="button">🙈 Hide Earned</button>
+          <button id="randomBadge" class="chip-btn" type="button">🎲 Random</button>
+          <button id="focusMode" class="chip-btn" type="button">🎯 Focus</button>
+        </div>
+        <div class="action-row">
+          <button id="bulkLocked" class="action-btn" type="button">Set Visible Locked</button>
+          <button id="bulkProgress" class="action-btn" type="button">Set Visible In-Progress</button>
+          <button id="bulkEarned" class="action-btn" type="button">Set Visible Earned</button>
+          <button id="exportBtn" class="action-btn" type="button">Export</button>
+          <label class="action-btn file-label">Import<input id="importFile" type="file" accept="application/json" /></label>
+          <button id="shareBtn" class="action-btn" type="button">Share</button>
+          <button id="reset" class="action-btn danger" type="button">Reset</button>
+        </div>
       </section>
 
       <section class="progress-strip">
         <div class="stats" id="stats"></div>
+        <div class="bar-wrap"><div class="overall-bar" id="overallBar"></div></div>
+        <div class="category-progress" id="categoryProgress"></div>
       </section>
 
       <section class="board-wrap">
         <div class="badge-grid" id="badgeGrid"></div>
       </section>
 
-      <footer class="detail-bar" id="detailBar">Click a badge to toggle progress.</footer>
+      <aside class="side-panel">
+        <div class="panel-block" id="dailyChallenge"></div>
+        <div class="panel-block">
+          <h3>Milestones</h3>
+          <ul id="milestones"></ul>
+        </div>
+      </aside>
+
+      <footer class="detail-bar" id="detailBar">Click badge image to cycle status. Click ⭐ to favorite.</footer>
     </section>
   </main>
 
