@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Splatoon 3 Badge Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="tracker-frame">
+      <header class="header-strip">
+        <div class="profile-chip">inkKiddo</div>
+      </header>
+
+      <nav class="tab-row">
+        <button class="tab-btn">Banners</button>
+        <button class="tab-btn active">Badges</button>
+        <button class="tab-btn">Titles</button>
+      </nav>
+
+      <section class="controls">
+        <input id="search" type="text" placeholder="Search badge name/category..." />
+        <div class="filters" id="filters"></div>
+        <button id="reset" class="reset-btn">Reset</button>
+      </section>
+
+      <section class="progress-strip">
+        <div class="stats" id="stats"></div>
+      </section>
+
+      <section class="board-wrap">
+        <div class="badge-grid" id="badgeGrid"></div>
+      </section>
+
+      <footer class="detail-bar" id="detailBar">Click a badge to toggle progress.</footer>
+    </section>
+  </main>
+
+  <script src="badges.js"></script>
+</body>
+</html>
